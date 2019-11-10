@@ -24,4 +24,6 @@
 
   ;;instance method field invocation
   (println "Demo instance field: " (.-itotal demo))
-  )
+)
+
+

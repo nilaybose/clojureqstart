@@ -83,8 +83,6 @@ sum ( 5 + 2 ) =  7
 ```
 ---
 
-
-
 #### Host inter-operation: A JVM crash course
 
 - In many cases Clojure uses Java types and the standard library directly - strings in Clojure are Java String objects and literal numerals are Java Long objects
@@ -210,3 +208,48 @@ TNEMEGANAM
 Java values :  [hello, data, management]
 Clojure -> avector:  [1 2 3 4 5] , bvector:  [1 2 3 4 5 10]
 ```
+---
+#### Import clojure namespace from another clojure namespace
+
+> Given clojure utilities
+
+```clojure
+(ns clojureqstart.utilities)
+
+(defn factorial [n]
+  (reduce * (range 1 (inc n))))
+```
+> Clojure call
+
+```clojure
+(ns clojureqstart.clojureimport
+  (:require [clojureqstart.utilities :as util]))
+
+(defn -main                                                 ; main method (-) static
+  "function documentation"
+  []
+  (println (util/factorial 7)))
+```
+---
+#### Invoke clojure namespace from java
+
+The public Java API for Clojure consists of the following classes and interfaces:
+
+- clojure.java.api.Clojure
+
+- clojure.lang.IFn
+
+> Given clojure utilities
+
+```clojure
+(ns clojureqstart.utilities)
+
+(defn factorial [n]
+  (reduce * (range 1 (inc n))))
+```
+
+> Java invocation
+
+
+---
+

@@ -12,3 +12,4 @@
   (def n "Open text")
   (println (reverse n))                                  ; (t x e t   n e p O)
   )
+
