@@ -20,7 +20,7 @@ and providing powerful concurrency constructs
 
 ---
 
-##### Object Orientation is overrated
+### Object Orientation is overrated
 
 - Born of simulation, now used for everything, even when inappropriate. 
 Encouraged by Java/C# in all situations, due to their lack of (idiomatic) support for anything else
@@ -43,6 +43,26 @@ Encouraged by Java/C# in all situations, due to their lack of (idiomatic) suppor
 - Write Java in Java, consume and extend Java from Clojure.
 
 ---
+
+#### Lets write the first code
+
+```clojure
+(defn -main                                                 ; main method (-) static
+  "function documentation"
+  []                                                        ; arguments
+  (println "Hello, World!")
+  (println (str "hello" " " "data management!"))            ; str is used for string concatenation
+  )
+```
+#### Lets embrace parenthesis
+
+Parentheses serve two purposes
+
+- Calling functions
+- Constructing lists
+
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
 
 
 

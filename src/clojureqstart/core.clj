@@ -1,6 +1,8 @@
 (ns clojureqstart.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn -main                                                 ; main method (-) static
+  "function documentation"
+  []                                                        ; arguments
+  (println "Hello, World!")
+  (println (str "hello" " " "data management!"))            ; str is used for string concatenation
+  )
