@@ -54,17 +54,64 @@ Encouraged by Java/C# in all situations, due to their lack of (idiomatic) suppor
   (println (str "hello" " " "data management!"))            ; str is used for string concatenation
   )
 ```
+
+---
+
 #### Lets embrace parenthesis
 
 Parentheses serve two purposes
 
 - Calling functions
 - Constructing lists
+- Contain functions (or
+  special things that act like functions) and their arguments. 
+- containers for all expressions in the language
 
 ![alt text](https://github.com/nilaybose/clojureqstart/blob/master/resources/parenthesis.png "nested parenthesis")
 
+---
 
+#### Host inter-operation: A JVM crash course
 
+- In many cases Clojure uses Java types and the standard library directly - strings in Clojure are Java String objects and literal numerals are Java Long objects
+- Clojure’s collections implement the same collection interfaces implemented by Java
+  collections
+- Java code can
+  use Clojure types (such as its immutable data structures) seamlessly
+- Clojure wraps Java library features with functions of its own, like many
+  of the functions in Clojure’s clojure.string namespace that delegate to methods in
+  Java’s String class
+- Clojure doesn’t implement regular functions for
+  mathematical methods,therefore need to be invoked via the Java interop (java.lang.Math)
+- How does Clojure differentiate between regular Clojure code and code that does Java interop? 
+  **The first part of this answer is the dot operator.**
 
+```clojure
+
+(defn -main                                                 ; main method (-) static
+  "function documentation"
+  []                                                        ; arguments
+  (println (. Math PI))                                     ; 3.141592653589793, static field invocation
+  (println Math/PI)                                         ; 3.141592653589793, static field invocation
+  (println (. System currentTimeMillis))                    ; static method invocation, observer space between . and Class (System)
+  (println (System/currentTimeMillis))                      ; static method
+
+  ;; custom java objects
+  (println "Demointerop class variable: " (Demointerop/TOTAL))  ; custom java object static field
+
+  ;; custom instance creation and method invocation
+  (def demo (new Demointerop))
+  (. demo callDemo)
+  (println "Object hash : " (.hashCode demo))
+
+  ;; custom instance creation and method invocation, alternative approach
+  (def demo (Demointerop.))
+  (.callDemo demo)
+  (println "Object hash : " (.hashCode demo))
+
+  ;;instance method field invocation
+  (println "Demo instance field: " (.-itotal demo))
+  )
+```
 
   
