@@ -44,19 +44,6 @@ Encouraged by Java/C# in all situations, due to their lack of (idiomatic) suppor
 
 ---
 
-#### Lets write the first code
-
-```clojure
-(defn -main                                                 ; main method (-) static
-  "function documentation"
-  []                                                        ; arguments
-  (println "Hello, World!")
-  (println (str "hello" " " "data management!"))            ; str is used for string concatenation
-  )
-```
-
----
-
 #### Lets embrace parenthesis
 
 Parentheses serve two purposes
@@ -70,6 +57,33 @@ Parentheses serve two purposes
 ![alt text](https://github.com/nilaybose/clojureqstart/blob/master/resources/parenthesis.png "nested parenthesis")
 
 ---
+
+#### Lets write the first code
+
+```clojure
+(defn -main                                                 ; main method (-) static
+  "function documentation"
+  []                                                        ; arguments
+  (println "Hello, World!")
+  (println (str "hello" " " "data management!"))            ; str is used for string concatenation
+
+  (def total 5)
+  (println "sum ( 5 + 2 ) = " (+ total 2))                  ; 7
+
+  (def n "Open text")
+  (println (reverse n))                                  ; (t x e t   n e p O)
+  )
+```
+>output
+```console
+Hello, World!
+hello data management!
+sum ( 5 + 2 ) =  7
+(t x e t   n e p O)
+```
+---
+
+
 
 #### Host inter-operation: A JVM crash course
 
@@ -170,3 +184,29 @@ TNEMEGANAM
 ```
 ---
   
+##### Demo of immutability
+
+- Clojure data structures are immutable 
+- Using Java data structure as inter-op will not be immutable
+
+```clojure
+(defn -main                                                 ; main method (-) static
+  "function documentation"
+  []                                                        ; arguments
+  ;; Test if Java Inter-op is immutable
+  (def alist (doto (ArrayList.) (.add "hello")))
+  ; add operation
+  (doto alist (.add "data") (.add "management"))
+  (println "Java values : " (.toString alist))
+
+  ;; Clojure equivalent
+  (def avector [ 1 2 3 4 5])
+  (def bvector (conj avector 10))
+  (println "Clojure -> avector: " avector ", bvector: " bvector)
+  )
+```
+>output
+```console
+Java values :  [hello, data, management]
+Clojure -> avector:  [1 2 3 4 5] , bvector:  [1 2 3 4 5 10]
+```
