@@ -40,7 +40,7 @@ Encouraged by Java/C# in all situations, due to their lack of (idiomatic) suppor
 
 - Many functions defined on few primary data structures (seq, map, vector, set).
 
-- Write Java in Java, consume and extend Java from Clojure.
+- Write code in Java, consume and extend Java from Clojure.
 
 ---
 

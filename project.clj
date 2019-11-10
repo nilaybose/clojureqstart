@@ -7,4 +7,5 @@
   :source-paths      ["src/main/clojure"]
   :java-source-paths ["src/main/java"]
   :aot :all
+  :main clojureqstart.core
   :repl-options {:init-ns clojureqstart.core})
