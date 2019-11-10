@@ -249,14 +249,14 @@ The public Java API for Clojure consists of the following classes and interfaces
 ```
 > Java invocation
 ```java
-    public static void main(String[] args) {
-        IFn require = Clojure.var("clojure.core", "require");
-        // Load the clojure name space
-        require.invoke(Clojure.read("clojureqstart.utilities"));
-        // Invoke the method
-        IFn factorial = Clojure.var("clojureqstart.utilities", "factorial");
-        System.out.println("Factorial of 7 : " + factorial.invoke(7));
-    }
+public static void main(String[] args) {
+    IFn require = Clojure.var("clojure.core", "require");
+    // Load the clojure name space
+    require.invoke(Clojure.read("clojureqstart.utilities"));
+    // Invoke the method
+    IFn factorial = Clojure.var("clojureqstart.utilities", "factorial");
+    System.out.println("Factorial of 7 : " + factorial.invoke(7));
+}
 ```
 
 ---
