@@ -86,8 +86,21 @@ Parentheses serve two purposes
 - How does Clojure differentiate between regular Clojure code and code that does Java interop? 
   **The first part of this answer is the dot operator.**
 
-```clojure
+> Java Class
 
+```java
+public class Demointerop {
+    public static int TOTAL = 100 ;
+
+    public int itotal = -100 ;
+
+    public void callDemo(){
+        System.out.println("Calling demo");
+    }
+}
+```
+
+```clojure
 (defn -main                                                 ; main method (-) static
   "function documentation"
   []                                                        ; arguments
@@ -113,5 +126,47 @@ Parentheses serve two purposes
   (println "Demo instance field: " (.-itotal demo))
   )
 ```
+> Output
 
+```console
+3.141592653589793
+1573387901052
+1573387901054
+Demointerop class variable:  100
+Calling demo
+Object hash :  841262455
+Calling demo
+Object hash :  775081157
+Demo instance field:  -100
+```
+
+##### Java Interop - function calls with multiple parameters
+
+```clojure
+(defn -main                                                 ; main method (-) static
+  "function documentation"
+  []                                                        ; arguments
+  (println (.toUpperCase "hello world"))                    ; HELLO WORLD, preferred way
+  (println (. "hello world" toUpperCase ))                  ; HELLO WORLD
+
+  (println (. "hello world" substring 0 5 ))                ; hello
+  (println (.substring "hello world" 0 5))                  ; hello
+
+  ;; Chaining
+  (println (.toString (.reverse (StringBuilder. "Data Management")))) ; tnemeganaM ataD
+  (println (.. (StringBuilder. "Data management") reverse toString toUpperCase)) ;TNEMEGANAM ATAD
+  (println (.. (StringBuilder. "Data management") reverse toString toUpperCase (substring 0 10))) ;TNEMEGANAM 
+  )
+```
+> Output
+```console
+HELLO WORLD
+HELLO WORLD
+hello
+hello
+tnemeganaM ataD
+TNEMEGANAM ATAD
+TNEMEGANAM
+```
+---
   
