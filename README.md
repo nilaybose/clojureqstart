@@ -1,4 +1,4 @@
-##Clojure in Nutshell
+## Clojure in Nutshell
 
 - Simple and succinct programming language designed to leverage easily
   both legacy code and modern multicore processors
@@ -20,7 +20,7 @@ and providing powerful concurrency constructs
 
 ---
 
-#####Object Orientation is overrated
+##### Object Orientation is overrated
 
 - Born of simulation, now used for everything, even when inappropriate. 
 Encouraged by Java/C# in all situations, due to their lack of (idiomatic) support for anything else
