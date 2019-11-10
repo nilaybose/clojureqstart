@@ -6,4 +6,5 @@
   :dependencies [[org.clojure/clojure "1.10.0"]]
   :source-paths      ["src/main/clojure"]
   :java-source-paths ["src/main/java"]
+  :aot :all
   :repl-options {:init-ns clojureqstart.core})
