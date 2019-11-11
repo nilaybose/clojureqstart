@@ -1,4 +1,4 @@
-(ns clojureqstart.immutability
+(ns day1.immutability
   (:import (java.util ArrayList Arrays)))
 
 (defn -main                                                 ; main method (-) static

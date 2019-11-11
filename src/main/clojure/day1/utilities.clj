@@ -1,4 +1,4 @@
-(ns clojureqstart.utilities
+(ns day1.utilities
 )
 
 (defn factorial [n]

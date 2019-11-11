@@ -1,4 +1,4 @@
-(ns clojureqstart.javainterop
+(ns day1.javainterop
   (:import (javaiopt Demointerop)))
 
 (defn -main                                                 ; main method (-) static

@@ -1,4 +1,4 @@
-(ns clojureqstart.multiparamfunc)
+(ns day1.multiparamfunc)
 
 (defn -main                                                 ; main method (-) static
   "function documentation"

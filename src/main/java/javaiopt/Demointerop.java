@@ -11,9 +11,9 @@ public class Demointerop {
     public static void main(String[] args) {
         IFn require = Clojure.var("clojure.core", "require");
         // Load the clojure name space
-        require.invoke(Clojure.read("clojureqstart.utilities"));
+        require.invoke(Clojure.read("day1.utilities"));
         // Invoke the method
-        IFn factorial = Clojure.var("clojureqstart.utilities", "factorial");
+        IFn factorial = Clojure.var("day1.utilities", "factorial");
         System.out.println("Factorial of 7 : " + factorial.invoke(7));
     }
 

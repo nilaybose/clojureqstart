@@ -1,4 +1,4 @@
-(ns clojureqstart.core)
+(ns day1.core)
 
 (defn -main                                                 ; main method (-) static
   "function documentation"
