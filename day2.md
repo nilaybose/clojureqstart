@@ -111,7 +111,7 @@ arr    :  [Hello, Data, [], Management]
 Accessing index of array of 20th -  java.lang.ArrayIndexOutOfBoundsException
 ```
 ---
-####Clojure - Atoms
+#### Clojure - Atoms
 
 - Atoms are a data type in Clojure that provide a way to manage shared, synchronous, independent state
 - with validation support
@@ -184,3 +184,56 @@ New value of num :  5040
 even validation failed, while setting odd num to atom -  java.lang.IllegalStateException: Invalid reference state
 String validation failed, while setting str2 -  java.lang.IllegalStateException: Invalid reference state
 ```
+
+#### Loop
+
+- while loop
+
+```clojure
+(while(expression)
+   (do
+      codeblock))
+```
+
+```clojure
+(defn sum [n]
+  (def index (atom 1))
+  (def res (atom 0))
+  (while ( <= @index n)
+    (do
+      (swap! res (fn [res] (+ res @index)))
+      (swap! index inc)
+      ))
+    @res
+  )
+
+(defn -main
+  []
+  (println "sum of numbers up to 100 : " (sum 100)) ;5050
+  (println "sum of numbers up to 10 : " (sum 10))   ;55
+  )
+```
+
+- The **‘doseq’** statement is similar to the ‘for each’ statement which is found in many other programming languages. The doseq statement is basically used to iterate over a sequence.
+
+```clojure
+(doseq (sequence)
+   statement#1)
+```
+
+```clojure
+(defn seqloop []
+  (def arr (object-array ["Hello", "Data", "Management"])) ; creates an object array
+  (doseq [n arr]
+    (println "Seq loop iterating array -> " n)))
+```
+
+- **dotimes**  is used to execute a statement ‘x’ number of times.
+
+```clojure
+(defn dotimesloop [n]
+  (dotimes [x n]
+    (println "in do times loop -> " x)))
+```
+
+- 
