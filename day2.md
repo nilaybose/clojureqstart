@@ -12,18 +12,30 @@
   ([x y]
    (str "input x = " x ", y = " y)
    )
+  ([x y & args]
+   (str "input x = " x ", y = " y ", args = " args)
+   )
   )
+
+;private function
+(defn- echop[]
+  (println "private function invoked"))
 
 (defn -main[]
   (println (echo))
   (println (echo 10))
   (println (echo 10 20))
+  (println (echo 10 20 30 40 50)) ;
+  (echop)
   )
 ```
+> output
 ```console
 No arguments passed
 input x = 10
 input x = 10, y = 20
+input x = 10, y = 20, args = (30 40 50)
+private function invoked
 ``` 
 ---
 
