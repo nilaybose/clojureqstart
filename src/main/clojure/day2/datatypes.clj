@@ -10,7 +10,7 @@
   (def isSuccess? true)
   (def value nil)                                           ; nil is analogous to null in java
 
-  (println "x : " x ", class - " (.getClass x))
+  (println "x : " x ", class - " (class x))
   (println "y : " y ", class - " (.getClass y))
   (println "z : " z ", class - " (.getClass z))
   (println "z : " isSuccess? ", class - " (.getClass isSuccess?))
@@ -26,7 +26,7 @@
   (println "arr[1] : " (nth arr 1))
   (println "arr    : " (Arrays/toString arr))               ; array of size 5 and 2,3,4th index not set
 
-  ;define integer array in closure
+  ;define integer array in clojure
   (println "----------------------------------- Object ARRAY ---------------------------------------")
   (def arr (object-array ["Hello", "Data", (new ArrayList), "Management"])) ; creates an object array
   (println "Array class - " (.getClass arr))
