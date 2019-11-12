@@ -1,5 +1,5 @@
 (ns day1.clojureimport
-  (:require [clojureqstart.utilities :as util]))
+  (:require [day1.utilities :as util]))
 
 (defn -main                                                 ; main method (-) static
   "function documentation"

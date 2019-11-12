@@ -18,5 +18,14 @@ and providing powerful concurrency constructs
 
 - [Read closure rationale](https://clojure.org/about/rationale)
 
+#### Tutorials
+- [Day 1](day1.md)
+- [Day 2](day2.md)
+
+#### Reference
+
+- [Reference Cheatsheet](http://jafingerhut.github.io/cheatsheet/clojuredocs/cheatsheet-tiptip-cdocs-summary.html)
+- [Brave closure](https://www.braveclojure.com/getting-started/)
+
 ---
 
