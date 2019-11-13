@@ -300,5 +300,24 @@ loop [binding]
           (println "x is neither 5 nor 10"))
 
   )
+---
 
+```
+#### Exception handling
+
+- try, catch, finally similar to java
+
+```clojure
+(defn -main []
+  (try
+      (/ 1 0)
+      (catch RuntimeException e
+        (println "Runtime Exception handled " (class e))
+        )
+     (catch Exception e
+       (println "Exception handled " (class e))
+       )
+      (finally (println "out of errors"))
+     )
+  )
 ```
