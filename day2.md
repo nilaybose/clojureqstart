@@ -1,6 +1,6 @@
 #### Clojure method with multi-arity
 - Clojure functions can support multiple arguments as overloaded functions
-
+- functions can be passed as function return
 ```clojure
 (defn echo
   ([]
@@ -21,12 +21,32 @@
 (defn- echop[]
   (println "private function invoked"))
 
+; Return function
+(defn fret []
+  (fn[x y] (+ x y)))
+
+; Return function with operator (operator in clojure is actual function)
+(defn fretops [ops]
+  (fn[x y] (ops x y)))
+
 (defn -main[]
   (println (echo))
   (println (echo 10))
   (println (echo 10 20))
-  (println (echo 10 20 30 40 50)) ;
+  (println (echo 10 20 30 40 50))
   (echop)
+
+  ; anonymous function
+  (def funn (fn [x y] (+ x y)))
+  (println "anonymous function 1 - " (funn 3 4))
+  (println "anonymous return function 2 - " ((fret) 5 6 ))
+  (println "anonymous return function with ops(+ 5 6) - " ((fretops +) 5 6 ))
+  (println "anonymous return function with ops(rem 20 19) - " ((fretops rem) 20  17 ))
+
+
+  ; writing function using reader macro
+  (def func1 #(%1 %2 %3))
+  (println "anonymous function using reader macro - " (func1 - 4 7))
   )
 ```
 > output
@@ -36,6 +56,11 @@ input x = 10
 input x = 10, y = 20
 input x = 10, y = 20, args = (30 40 50)
 private function invoked
+anonymous function 1 -  7
+anonymous return function 2 -  11
+anonymous return function with ops(+ 5 6) -  11
+anonymous return function with ops(rem 20 19) -  3
+anonymous function using reader macro -  -3
 ``` 
 ---
 
@@ -259,6 +284,91 @@ loop [binding]
     )
   @res
   )
+```
+
+```clojure
+(defn whileloopsum [n]
+  (def index (atom 1))
+  (def res (atom 0))
+  (while (<= @index n)
+    (do
+      (swap! res (fn [res] (+ res @index)))
+      (swap! index inc)
+      ))
+  @res
+  )
+
+(defn whileloopsumiop [n]
+  (def index (int-array [1]))
+  (def res (int-array [0]))
+  (while (<= (aget index 0) n)
+    (do
+        (aset res 0 (+ (aget res 0) (aget index 0)))
+        (aset index 0 (+ (aget index 0) 1))
+      ))
+  (aget res 0)
+  )
+
+(defn smartsum [n]
+  (reduce + (range 1 (inc n))))
+
+(defn seqloop []
+  (def arr (object-array ["Hello", "Data", "Management"]))  ; creates an object array
+  (doseq [n arr]
+    (println "Seq loop iterating array -> " n)))
+
+(defn dotimesloop [n]
+  (dotimes [x n]
+    (println "in do times loop -> " x)))
+
+(defn loopsum
+  "Return sum of numbers up to n"
+  [n]
+  (def res (atom 0))
+  (loop [index 1]
+    (if (<= index n)
+      (do (swap! res (fn [res] (+ res index)))
+          (recur (inc index))))
+    )
+  @res
+  )
+
+(defn example []
+  (def x 5)
+  (cond
+    (= x 5) (do (println "x is 5")(println "x is 5"))
+    (= x 10)(println "x is 10")
+    :else (println "x is not defined")))
+
+
+(defn -main
+  []
+  (println "while loop -> sum of numbers up to 100 : " (whileloopsum 100))
+  (println "while loop -> sum of numbers up to 10 : " (whileloopsum 10))
+  (println "while loop -> sum of numbers up to 10 with java inter-op: " (whileloopsumiop 10))
+  (println "Smart way -> sum of numbers up to 10: " (smartsum 10))
+  (seqloop)
+  (dotimesloop 5)
+  (println "loop -> sum of numbers up to 100 : " (loopsum 100))
+  (println "loop -> sum of numbers up to 10 : " (loopsum 10))
+  )
+```
+>output
+```console
+while loop -> sum of numbers up to 100 :  5050
+while loop -> sum of numbers up to 10 :  55
+while loop -> sum of numbers up to 10 with java inter-op:  55
+Smart way -> sum of numbers up to 10:  55
+Seq loop iterating array ->  Hello
+Seq loop iterating array ->  Data
+Seq loop iterating array ->  Management
+in do times loop ->  0
+in do times loop ->  1
+in do times loop ->  2
+in do times loop ->  3
+in do times loop ->  4
+loop -> sum of numbers up to 100 :  5050
+loop -> sum of numbers up to 10 :  55
 ```
 ---
 

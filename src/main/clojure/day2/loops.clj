@@ -11,6 +11,20 @@
   @res
   )
 
+(defn whileloopsumiop [n]
+  (def index (int-array [1]))
+  (def res (int-array [0]))
+  (while (<= (aget index 0) n)
+    (do
+        (aset res 0 (+ (aget res 0) (aget index 0)))
+        (aset index 0 (+ (aget index 0) 1))
+      ))
+  (aget res 0)
+  )
+
+(defn smartsum [n]
+  (reduce + (range 1 (inc n))))
+
 (defn seqloop []
   (def arr (object-array ["Hello", "Data", "Management"]))  ; creates an object array
   (doseq [n arr]
@@ -44,6 +58,8 @@
   []
   (println "while loop -> sum of numbers up to 100 : " (whileloopsum 100))
   (println "while loop -> sum of numbers up to 10 : " (whileloopsum 10))
+  (println "while loop -> sum of numbers up to 10 with java inter-op: " (whileloopsumiop 10))
+  (println "Smart way -> sum of numbers up to 10: " (smartsum 10))
   (seqloop)
   (dotimesloop 5)
   (println "loop -> sum of numbers up to 100 : " (loopsum 100))
