@@ -285,6 +285,7 @@ loop [binding]
   @res
   )
 ```
+> loops code snippets
 
 ```clojure
 (defn whileloopsum [n]
