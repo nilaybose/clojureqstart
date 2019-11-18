@@ -1,23 +1,8 @@
-(ns day3.cldatastructures)
+(ns day3.clmaps)
 
 (defn -main
-"Clojure Immutable Data Structures"
-[]
-  (def v [ 1 2 3 4 5 6])                                    ; vector
-  (println v)
-
-  (println (assoc v 0 10))                                  ; replace 0th index with 10, [10 2 3 4 5 6]
-
-  (println (conj v 20))                                     ; [1 2 3 4 5 6 20]
-
-  (println (get v 0))                                       ; 10
-
-  (println (get v 100))                                     ; nil, no exception
-
-  (println (nth v 0))                                       ; 10
-
-  (try(println (nth v 100)) (catch Exception e (println (class e))))    ; nil, java.lang.IndexOutOfBoundsException
-
+  "Clojure Immutable Data Structures"
+  []
   ;; MAPS
 
   (def map1 {:a 5 :b 6 :c 7})
@@ -46,10 +31,11 @@
 
   ;; Nested MAPS
   (def user {:name "John" :salary 1000 :address { :city "Bangalore" :state "KA"}})
-
   ; How to get salary
   (println (:city (:address user)))                         ; Bangalore
+  (println (get-in user [:address :city]))                  ; Bangalore
 
+  (println (assoc-in user [:address :city] "Mysore"))       ;{:name John, :salary 1000, :address {:city Mysore, :state KA}}
 
-
+  (println (update-in user [:address :city] #(.toUpperCase %))) ;    {:name John, :salary 1000, :address {:city BANGALORE, :state KA}}
   )
