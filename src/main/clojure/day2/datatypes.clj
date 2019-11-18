@@ -36,6 +36,9 @@
   (println "arr[3] : " (nth arr 3))
   (println "arr    : " (Arrays/toString arr))               ; array of size 5 and 2,3,4th index not set
 
+  (def a1 (/ 10 7))
+  (println ">>>>>>>>>>>>>>>>>> " a1 " - " (class a1))
+
   ;Access index exceeding array size will result in exception
   (try
     (aget arr 20)
